@@ -6,7 +6,7 @@ export default function Hero() {
     <div className="relative">
       <div className="container flex flex-col items-center text-center py-20 md:py-32">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-          製造業の未来を{" "}
+          中小製造業の未来を{" "}
           <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
             AIで革新する
           </span>
