@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className="container flex h-16 items-center">
         <Link href="/">
           <a className="mr-8 flex items-center space-x-2">
-            <span className="text-xl font-bold">AI製造コンサル</span>
+            <span className="text-xl font-bold">知的探求HUB</span>
           </a>
         </Link>
         <div className="flex gap-6">

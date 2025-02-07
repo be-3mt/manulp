@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t py-8 md:py-12">
       <div className="container grid gap-8 md:grid-cols-3">
         <div>
-          <h3 className="text-lg font-semibold mb-4">AI製造コンサル</h3>
+          <h3 className="text-lg font-semibold mb-4">知的探求HUB</h3>
           <p className="text-sm text-muted-foreground">
             生成AIで中小製造業のデジタルトランスフォーメーションを実現
           </p>
@@ -40,7 +40,7 @@ export default function Footer() {
       </div>
       <div className="container mt-8 pt-8 border-t">
         <p className="text-sm text-center text-muted-foreground">
-          © {new Date().getFullYear()} AI製造コンサル. All rights reserved.
+          © {new Date().getFullYear()} 知的探求HUB. All rights reserved.
         </p>
       </div>
     </footer>
