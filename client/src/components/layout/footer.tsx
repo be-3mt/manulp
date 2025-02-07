@@ -7,34 +7,34 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">ManufacturingAI</h3>
           <p className="text-sm text-muted-foreground">
-            Transforming manufacturing with AI-powered solutions
+            AIで製造業のデジタルトランスフォーメーションを実現
           </p>
         </div>
         <div>
-          <h4 className="font-medium mb-4">Quick Links</h4>
+          <h4 className="font-medium mb-4">リンク</h4>
           <div className="grid gap-2">
             <Link href="/services">
               <a className="text-sm text-muted-foreground hover:text-primary">
-                Services
+                サービス
               </a>
             </Link>
             <Link href="/case-studies">
               <a className="text-sm text-muted-foreground hover:text-primary">
-                Case Studies
+                導入事例
               </a>
             </Link>
             <Link href="/blog">
               <a className="text-sm text-muted-foreground hover:text-primary">
-                Blog
+                ブログ
               </a>
             </Link>
           </div>
         </div>
         <div>
-          <h4 className="font-medium mb-4">Contact</h4>
+          <h4 className="font-medium mb-4">お問い合わせ</h4>
           <address className="text-sm text-muted-foreground not-italic">
-            <p>Email: contact@manufacturingai.com</p>
-            <p>Phone: (555) 123-4567</p>
+            <p>メール: contact@manufacturingai.com</p>
+            <p>電話: 03-1234-5678</p>
           </address>
         </div>
       </div>

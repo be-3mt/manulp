@@ -8,27 +8,27 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
-    title: "AI Process Optimization",
+    title: "AIプロセス最適化",
     description:
-      "Optimize your manufacturing processes with advanced AI algorithms that identify inefficiencies and suggest improvements.",
+      "高度なAIアルゴリズムを活用して製造プロセスを分析し、効率化とコスト削減を実現します。",
     icon: BrainCircuit,
   },
   {
-    title: "Predictive Maintenance",
+    title: "予知保全",
     description:
-      "Prevent equipment failures before they happen with AI-powered predictive maintenance solutions.",
+      "AIによる予測分析で設備の故障を事前に防止し、ダウンタイムを最小限に抑えます。",
     icon: Settings,
   },
   {
-    title: "Quality Control",
+    title: "品質管理",
     description:
-      "Implement computer vision and machine learning for automated quality inspection and defect detection.",
+      "画像認識とAIを組み合わせた自動品質検査システムで、不良品の発見精度を向上させます。",
     icon: LineChart,
   },
   {
-    title: "Performance Analytics",
+    title: "パフォーマンス分析",
     description:
-      "Gain deep insights into your manufacturing operations with real-time analytics and reporting.",
+      "リアルタイムの分析とレポーティングで、製造オペレーションの詳細な洞察を提供します。",
     icon: TrendingUp,
   },
 ];
@@ -37,7 +37,7 @@ export default function Features() {
   return (
     <section className="container py-20">
       <h2 className="text-3xl font-bold text-center mb-12">
-        Our Services
+        主要サービス
       </h2>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (

@@ -2,11 +2,11 @@ import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" }
+  { href: "/", label: "ホーム" },
+  { href: "/services", label: "サービス" },
+  { href: "/case-studies", label: "導入事例" },
+  { href: "/blog", label: "ブログ" },
+  { href: "/contact", label: "お問い合わせ" }
 ];
 
 export default function Navbar() {
