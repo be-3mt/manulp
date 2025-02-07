@@ -8,21 +8,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
-    title: "AIプロセス最適化",
+    title: "生成AIプロセス最適化",
     description:
-      "高度なAIアルゴリズムを活用して製造プロセスを分析し、効率化とコスト削減を実現します。",
+      "高度な生成AIアルゴリズムを活用して製造プロセスを分析し、効率化とコスト削減を実現します。",
     icon: BrainCircuit,
   },
   {
     title: "予知保全",
     description:
-      "AIによる予測分析で設備の故障を事前に防止し、ダウンタイムを最小限に抑えます。",
+      "生成AIによる予測分析で設備の故障を事前に防止し、ダウンタイムを最小限に抑えます。",
     icon: Settings,
   },
   {
     title: "品質管理",
     description:
-      "画像認識とAIを組み合わせた自動品質検査システムで、不良品の発見精度を向上させます。",
+      "画像認識と生成AIを組み合わせた自動品質検査システムで、不良品の発見精度を向上させます。",
     icon: LineChart,
   },
   {

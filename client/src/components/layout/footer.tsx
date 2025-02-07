@@ -7,7 +7,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">AI製造コンサル</h3>
           <p className="text-sm text-muted-foreground">
-            AIで中小製造業のデジタルトランスフォーメーションを実現
+            生成AIで中小製造業のデジタルトランスフォーメーションを実現
           </p>
         </div>
         <div>

@@ -8,11 +8,11 @@ export default function Hero() {
         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
           中小製造業の未来を{" "}
           <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-            AIで革新する
+            生成AIで革新する
           </span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-[600px] mb-8">
-          AIを活用して製造プロセスを最適化し、コスト削減とイノベーションを実現。中小企業のDX推進をサポートします。
+          生成AIを活用して製造プロセスを最適化し、コスト削減とイノベーションを実現。中小企業のDX推進をサポートします。
         </p>
         <div className="flex gap-4">
           <Link href="/services">
