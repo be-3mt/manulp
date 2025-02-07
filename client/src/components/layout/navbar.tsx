@@ -6,6 +6,7 @@ const navItems = [
   { href: "/services", label: "サービス" },
   { href: "/case-studies", label: "導入事例" },
   { href: "/blog", label: "ブログ" },
+  { href: "/dashboard", label: "ダッシュボード" },
   { href: "/contact", label: "お問い合わせ" }
 ];
 

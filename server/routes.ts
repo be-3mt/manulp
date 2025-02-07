@@ -33,5 +33,16 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
+  // ダッシュボード用のエンドポイントを追加
+  app.get("/api/dashboard/projects", async (_req, res) => {
+    try {
+      // Note: 認証実装後にuserIdを使用
+      const projects = await storage.getProjects();
+      res.json(projects);
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
   return createServer(app);
 }
