@@ -1,35 +1,35 @@
 import {
   BrainCircuit,
-  TrendingUp,
-  Settings,
-  LineChart,
+  Building2,
+  Presentation,
+  Wrench,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
-    title: "生成AIプロセス最適化",
+    title: "生成AI導入・運用セミナー",
     description:
-      "高度な生成AIアルゴリズムを活用して製造プロセスを分析し、効率化とコスト削減を実現します。",
+      "最新の生成AI技術と活用事例を学ぶセミナーを開催。実践的なワークショップで確実な導入をサポートします。",
+    icon: Presentation,
+  },
+  {
+    title: "個別導入・運用支援",
+    description:
+      "お客様の業務に最適な生成AIツールの選定から導入、運用までを一貫してサポート。スムーズな実装を実現します。",
     icon: BrainCircuit,
   },
   {
-    title: "予知保全",
+    title: "アプリ・ツール開発",
     description:
-      "生成AIによる予測分析で設備の故障を事前に防止し、ダウンタイムを最小限に抑えます。",
-    icon: Settings,
+      "業務に特化した生成AIアプリケーションやツールの開発。既存システムとの連携も含めて、カスタマイズされたソリューションを提供します。",
+    icon: Wrench,
   },
   {
-    title: "品質管理",
+    title: "経営支援・診断",
     description:
-      "画像認識と生成AIを組み合わせた自動品質検査システムで、不良品の発見精度を向上させます。",
-    icon: LineChart,
-  },
-  {
-    title: "パフォーマンス分析",
-    description:
-      "リアルタイムの分析とレポーティングで、製造オペレーションの詳細な洞察を提供します。",
-    icon: TrendingUp,
+      "経営戦略の立案から実行まで、専門家による包括的な支援を提供。生成AIを活用した業務改善で、経営効率の向上を実現します。",
+    icon: Building2,
   },
 ];
 
