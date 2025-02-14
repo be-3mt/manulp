@@ -17,7 +17,7 @@ const CatIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className="text-white"
+    className="text-primary-foreground"
   >
     <path
       d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -126,7 +126,8 @@ export default function ChatBot() {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 rounded-full p-3 bg-primary hover:bg-primary/90 shadow-lg z-[100]"
+        className="fixed bottom-6 right-6 rounded-full p-3 bg-primary hover:bg-primary/90 shadow-lg z-[9999]"
+        aria-label="チャットを開く"
       >
         <CatIcon />
       </Button>
@@ -134,8 +135,8 @@ export default function ChatBot() {
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col shadow-xl z-[100]">
-      <CardHeader className="flex flex-row items-center justify-between p-3 border-b">
+    <Card className="fixed bottom-6 right-6 w-[350px] h-[500px] flex flex-col shadow-xl z-[9999]">
+      <CardHeader className="flex flex-row items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
           <CatIcon />
           <h3 className="font-semibold">AIアシスタント にゃんこ</h3>
@@ -145,12 +146,13 @@ export default function ChatBot() {
           size="sm"
           className="h-8 w-8 p-0"
           onClick={() => setIsOpen(false)}
+          aria-label="チャットを閉じる"
         >
           ×
         </Button>
       </CardHeader>
       <CardContent className="flex-1 p-4 overflow-hidden">
-        <ScrollArea className="h-full">
+        <ScrollArea className="h-full pr-4">
           <div className="space-y-4">
             {messages.map((message, i) => (
               <div
@@ -160,7 +162,7 @@ export default function ChatBot() {
                 }`}
               >
                 <div
-                  className={`rounded-lg px-3 py-2 max-w-[80%] ${
+                  className={`rounded-lg px-3 py-2 max-w-[85%] ${
                     message.role === "assistant"
                       ? "bg-muted text-muted-foreground"
                       : "bg-primary text-primary-foreground"
@@ -180,15 +182,16 @@ export default function ChatBot() {
           </div>
         </ScrollArea>
       </CardContent>
-      <CardFooter className="p-3 border-t">
+      <CardFooter className="p-4 border-t">
         <form onSubmit={handleSubmit} className="flex w-full gap-2">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="メッセージを入力..."
             disabled={isLoading}
+            className="flex-1"
           />
-          <Button type="submit" disabled={isLoading || !input.trim()}>
+          <Button type="submit" disabled={isLoading || !input.trim()} size="sm">
             送信
           </Button>
         </form>
