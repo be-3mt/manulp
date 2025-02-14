@@ -16,6 +16,7 @@ const CatIcon = () => (
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    className="text-white"
   >
     <path
       d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
@@ -80,7 +81,7 @@ export default function ChatBot() {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 rounded-full p-3 bg-primary hover:bg-primary/90 z-50"
+        className="fixed bottom-4 right-4 rounded-full p-3 bg-primary hover:bg-primary/90 shadow-lg z-[100]"
       >
         <CatIcon />
       </Button>
@@ -88,7 +89,7 @@ export default function ChatBot() {
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col shadow-lg z-50">
+    <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col shadow-xl z-[100]">
       <CardHeader className="flex flex-row items-center justify-between p-3 border-b">
         <div className="flex items-center gap-2">
           <CatIcon />

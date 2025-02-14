@@ -16,7 +16,7 @@ import ChatBot from "@/components/chat/ChatBot";
 
 function Router() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1">
         <Switch>
@@ -31,7 +31,6 @@ function Router() {
         </Switch>
       </main>
       <Footer />
-      <ChatBot />
     </div>
   );
 }
@@ -40,6 +39,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router />
+      <ChatBot />
       <Toaster />
     </QueryClientProvider>
   );
