@@ -12,6 +12,7 @@ import BlogPost from "@/pages/blog/[id]";
 import Dashboard from "@/pages/dashboard";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import ChatBot from "@/components/chat/ChatBot";
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
         </Switch>
       </main>
       <Footer />
+      <ChatBot />
     </div>
   );
 }
