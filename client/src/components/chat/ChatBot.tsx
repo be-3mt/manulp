@@ -63,7 +63,7 @@ export default function ChatBot() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage }),
       });
-      
+
       const data = await response.json();
       setMessages((prev) => [...prev, { text: data.message, isBot: true }]);
     } catch (error) {
@@ -80,7 +80,7 @@ export default function ChatBot() {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-4 rounded-full p-3 bg-primary hover:bg-primary/90"
+        className="fixed bottom-4 right-4 rounded-full p-3 bg-primary hover:bg-primary/90 z-50"
       >
         <CatIcon />
       </Button>
@@ -88,7 +88,7 @@ export default function ChatBot() {
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col shadow-lg">
+    <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col shadow-lg z-50">
       <CardHeader className="flex flex-row items-center justify-between p-3 border-b">
         <div className="flex items-center gap-2">
           <CatIcon />
@@ -103,7 +103,7 @@ export default function ChatBot() {
           ×
         </Button>
       </CardHeader>
-      <CardContent className="flex-1 p-4">
+      <CardContent className="flex-1 p-4 overflow-hidden">
         <ScrollArea className="h-full">
           <div className="space-y-4">
             {messages.map((message, i) => (
