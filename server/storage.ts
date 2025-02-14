@@ -1,149 +1,85 @@
-import { type BlogPost, type InsertBlogPost, type Contact, type InsertContact, type Project, type ProjectMilestone } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
+import { 
+  type BlogPost, type InsertBlogPost, 
+  type Contact, type InsertContact, 
+  type Project, type ProjectMilestone,
+  type ChatUser, type InsertChatUser, 
+  type ChatSession, type InsertChatSession, 
+  type ChatMessage, type InsertChatMessage,
+  chatUsers, chatSessions, chatMessages, blogPosts, contacts, projects
+} from "@shared/schema";
 
 export interface IStorage {
   getAllBlogPosts(): Promise<BlogPost[]>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   createContact(contact: InsertContact): Promise<Contact>;
   getProjects(userId?: number): Promise<(Project & { milestones: ProjectMilestone[] })[]>;
+  createChatUser(user: InsertChatUser): Promise<ChatUser>;
+  getChatUserByEmail(email: string): Promise<ChatUser | undefined>;
+  createChatSession(session: InsertChatSession): Promise<ChatSession>;
+  getChatSessionById(sessionId: number): Promise<ChatSession | undefined>;
+  createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
+  getChatMessagesBySessionId(sessionId: number): Promise<ChatMessage[]>;
 }
 
-export class MemStorage implements IStorage {
-  private blogs: Map<number, BlogPost>;
-  private contacts: Map<number, Contact>;
-  private projects: Map<number, Project>;
-  private milestones: Map<number, ProjectMilestone>;
-  private currentBlogId: number;
-  private currentContactId: number;
-  private currentProjectId: number;
-  private currentMilestoneId: number;
-
-  constructor() {
-    this.blogs = new Map();
-    this.contacts = new Map();
-    this.projects = new Map();
-    this.milestones = new Map();
-    this.currentBlogId = 1;
-    this.currentContactId = 1;
-    this.currentProjectId = 1;
-    this.currentMilestoneId = 1;
-
-    // Seed initial blog posts and sample projects
-    this.seedBlogPosts();
-    this.seedProjects();
-  }
-
-  private seedBlogPosts() {
-    const posts: InsertBlogPost[] = [
-      {
-        title: "How AI is Transforming Manufacturing",
-        content: "AI is revolutionizing manufacturing processes...",
-        summary: "Discover how artificial intelligence is changing the manufacturing landscape",
-        slug: "ai-transforming-manufacturing",
-        imageUrl: "https://images.unsplash.com/photo-1581091226825-c6a89e7e4801",
-      },
-      {
-        title: "Predictive Maintenance Success Stories",
-        content: "Learn how predictive maintenance is saving costs...",
-        summary: "Real-world examples of predictive maintenance in action",
-        slug: "predictive-maintenance-success",
-        imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837",
-      }
-    ];
-
-    posts.forEach(post => {
-      this.blogs.set(this.currentBlogId, {
-        ...post,
-        id: this.currentBlogId++
-      });
-    });
-  }
-
-  private seedProjects() {
-    const sampleProjects: Project[] = [
-      {
-        id: this.currentProjectId++,
-        userId: 1,
-        name: "生成AI導入プロジェクト",
-        description: "製造プロセスの最適化のための生成AI導入",
-        status: "in_progress",
-        startDate: new Date("2024-01-15"),
-        targetDate: new Date("2024-06-30"),
-        createdAt: new Date(),
-      },
-      {
-        id: this.currentProjectId++,
-        userId: 1,
-        name: "予知保全システム構築",
-        description: "設備の予知保全システムの導入",
-        status: "planning",
-        startDate: new Date("2024-02-01"),
-        targetDate: new Date("2024-08-31"),
-        createdAt: new Date(),
-      },
-    ];
-
-    const sampleMilestones: ProjectMilestone[] = [
-      {
-        id: this.currentMilestoneId++,
-        projectId: 1,
-        title: "要件定義",
-        description: "現状分析と要件の洗い出し",
-        completed: true,
-        dueDate: new Date("2024-02-15"),
-        createdAt: new Date(),
-      },
-      {
-        id: this.currentMilestoneId++,
-        projectId: 1,
-        title: "システム設計",
-        description: "AI モデルの選定と設計",
-        completed: false,
-        dueDate: new Date("2024-03-31"),
-        createdAt: new Date(),
-      },
-      {
-        id: this.currentMilestoneId++,
-        projectId: 2,
-        title: "センサー配置計画",
-        description: "センサーの種類と設置場所の決定",
-        completed: false,
-        dueDate: new Date("2024-03-15"),
-        createdAt: new Date(),
-      },
-    ];
-
-    sampleProjects.forEach(project => this.projects.set(project.id, project));
-    sampleMilestones.forEach(milestone => this.milestones.set(milestone.id, milestone));
-  }
-
+export class DatabaseStorage implements IStorage {
   async getAllBlogPosts(): Promise<BlogPost[]> {
-    return Array.from(this.blogs.values());
+    return db.query.blogPosts.findMany();
   }
 
   async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
-    return Array.from(this.blogs.values()).find(post => post.slug === slug);
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return post;
   }
 
   async createContact(contact: InsertContact): Promise<Contact> {
-    const id = this.currentContactId++;
-    const newContact: Contact = {
-      ...contact,
-      id,
-      createdAt: new Date(),
-    };
-    this.contacts.set(id, newContact);
+    const [newContact] = await db.insert(contacts).values(contact).returning();
     return newContact;
   }
 
   async getProjects(userId?: number): Promise<(Project & { milestones: ProjectMilestone[] })[]> {
-    const projects = Array.from(this.projects.values());
-    const filteredProjects = userId ? projects.filter(p => p.userId === userId) : projects;
+    const projects = await db.query.projects.findMany({
+      where: userId ? eq(projects.userId, userId) : undefined,
+      with: {
+        milestones: true,
+      },
+    });
+    return projects;
+  }
 
-    return filteredProjects.map(project => ({
-      ...project,
-      milestones: Array.from(this.milestones.values()).filter(m => m.projectId === project.id),
-    }));
+  async createChatUser(user: InsertChatUser): Promise<ChatUser> {
+    const [newUser] = await db.insert(chatUsers).values(user).returning();
+    return newUser;
+  }
+
+  async getChatUserByEmail(email: string): Promise<ChatUser | undefined> {
+    const [user] = await db.select().from(chatUsers).where(eq(chatUsers.email, email));
+    return user;
+  }
+
+  async createChatSession(session: InsertChatSession): Promise<ChatSession> {
+    const [newSession] = await db.insert(chatSessions).values(session).returning();
+    return newSession;
+  }
+
+  async getChatSessionById(sessionId: number): Promise<ChatSession | undefined> {
+    const [session] = await db.select().from(chatSessions).where(eq(chatSessions.id, sessionId));
+    return session;
+  }
+
+  async createChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
+    const [newMessage] = await db.insert(chatMessages).values(message).returning();
+    return newMessage;
+  }
+
+  async getChatMessagesBySessionId(sessionId: number): Promise<ChatMessage[]> {
+    return db
+      .select()
+      .from(chatMessages)
+      .where(eq(chatMessages.sessionId, sessionId))
+      .orderBy(chatMessages.createdAt);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

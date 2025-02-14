@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useToast } from "@/hooks/use-toast";
 
 const CatIcon = () => (
   <svg
@@ -34,44 +35,88 @@ const CatIcon = () => (
 );
 
 type Message = {
-  text: string;
-  isBot: boolean;
+  id?: number;
+  content: string;
+  role: "user" | "assistant";
+  createdAt?: string;
 };
 
 export default function ChatBot() {
+  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      text: "こんにちは！AIアシスタントの「にゃんこ」です。生成AIや製造業に関する質問にお答えします。何でもお気軽にどうぞ！",
-      isBot: true,
+      content: "こんにちは！AIアシスタントの「にゃんこ」です。生成AIや製造業に関する質問にお答えします。何でもお気軽にどうぞ！",
+      role: "assistant",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const initSession = async () => {
+      try {
+        const response = await fetch("/api/chat/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: "ゲストユーザー",
+            email: `guest_${Date.now()}@example.com`,
+          }),
+        });
+        const data = await response.json();
+        setSessionId(data.sessionId);
+
+        // セッション履歴を取得
+        const historyResponse = await fetch(`/api/chat/history/${data.sessionId}`);
+        const historyData = await historyResponse.json();
+        if (historyData.length > 0) {
+          setMessages(historyData);
+        }
+      } catch (error) {
+        toast({
+          title: "エラー",
+          description: "チャットの初期化に失敗しました。",
+          variant: "destructive",
+        });
+      }
+    };
+
+    if (isOpen && !sessionId) {
+      initSession();
+    }
+  }, [isOpen, sessionId, toast]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || !sessionId) return;
 
     const userMessage = input.trim();
     setInput("");
-    setMessages((prev) => [...prev, { text: userMessage, isBot: false }]);
+    setMessages((prev) => [...prev, { content: userMessage, role: "user" }]);
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch("/api/chat/message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
+        body: JSON.stringify({
+          sessionId,
+          message: userMessage,
+        }),
       });
 
       const data = await response.json();
-      setMessages((prev) => [...prev, { text: data.message, isBot: true }]);
+      if (!response.ok) throw new Error(data.message);
+
+      setMessages((prev) => [...prev, { content: data.message, role: "assistant" }]);
     } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        { text: "申し訳ありません。エラーが発生しました。", isBot: true },
-      ]);
+      toast({
+        title: "エラー",
+        description: "メッセージの送信に失敗しました。",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -111,17 +156,17 @@ export default function ChatBot() {
               <div
                 key={i}
                 className={`flex ${
-                  message.isBot ? "justify-start" : "justify-end"
+                  message.role === "assistant" ? "justify-start" : "justify-end"
                 }`}
               >
                 <div
                   className={`rounded-lg px-3 py-2 max-w-[80%] ${
-                    message.isBot
+                    message.role === "assistant"
                       ? "bg-muted text-muted-foreground"
                       : "bg-primary text-primary-foreground"
                   }`}
                 >
-                  {message.text}
+                  {message.content}
                 </div>
               </div>
             ))}

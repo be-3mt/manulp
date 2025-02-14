@@ -20,11 +20,25 @@ export const contacts = pgTable("contacts", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const chatUsers = pgTable("chat_users", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  email: varchar("email", { length: 100 }),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const chatSessions = pgTable("chat_sessions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => chatUsers.id),
+  startedAt: timestamp("started_at").defaultNow(),
+  lastMessageAt: timestamp("last_message_at").defaultNow(),
+});
+
 export const chatMessages = pgTable("chat_messages", {
   id: serial("id").primaryKey(),
-  sessionId: varchar("session_id", { length: 100 }).notNull(),
-  role: varchar("role", { length: 20 }).notNull(),
+  sessionId: integer("session_id").notNull().references(() => chatSessions.id),
   content: text("content").notNull(),
+  role: varchar("role", { length: 20 }).notNull(), 
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -53,7 +67,7 @@ export const projectMilestones = pgTable("project_milestones", {
   projectId: integer("project_id").notNull().references(() => projects.id),
   title: varchar("title", { length: 200 }).notNull(),
   description: text("description").notNull(),
-  completed: boolean("completed").default(false),
+  completed: boolean("completed").default(false).notNull(),
   dueDate: timestamp("due_date"),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -73,10 +87,19 @@ export const insertContactSchema = createInsertSchema(contacts).pick({
   message: true,
 });
 
+export const insertChatUserSchema = createInsertSchema(chatUsers).pick({
+  name: true,
+  email: true,
+});
+
+export const insertChatSessionSchema = createInsertSchema(chatSessions).pick({
+  userId: true,
+});
+
 export const insertChatMessageSchema = createInsertSchema(chatMessages).pick({
   sessionId: true,
-  role: true,
   content: true,
+  role: true,
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
@@ -107,6 +130,10 @@ export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
+export type InsertChatUser = z.infer<typeof insertChatUserSchema>;
+export type ChatUser = typeof chatUsers.$inferSelect;
+export type InsertChatSession = z.infer<typeof insertChatSessionSchema>;
+export type ChatSession = typeof chatSessions.$inferSelect;
 export type InsertChatMessage = z.infer<typeof insertChatMessageSchema>;
 export type ChatMessage = typeof chatMessages.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
