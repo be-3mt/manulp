@@ -13,20 +13,14 @@ export default function Footer() {
         <div>
           <h4 className="font-medium mb-4">リンク</h4>
           <div className="grid gap-2">
-            <Link href="/services">
-              <a className="text-sm text-muted-foreground hover:text-primary">
-                サービス
-              </a>
+            <Link href="/services" className="text-sm text-muted-foreground hover:text-primary">
+              サービス
             </Link>
-            <Link href="/case-studies">
-              <a className="text-sm text-muted-foreground hover:text-primary">
-                導入事例
-              </a>
+            <Link href="/case-studies" className="text-sm text-muted-foreground hover:text-primary">
+              導入事例
             </Link>
-            <Link href="/blog">
-              <a className="text-sm text-muted-foreground hover:text-primary">
-                ブログ
-              </a>
+            <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary">
+              ブログ
             </Link>
           </div>
         </div>
