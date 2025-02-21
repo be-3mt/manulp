@@ -13,6 +13,17 @@ import {
 
 const consultingPlans = [
   {
+    name: "スポットコンサルティング",
+    price: "50,000円",
+    duration: "2時間",
+    features: [
+      "現状の課題整理",
+      "改善施策の提案",
+      "AI活用の方向性検討",
+      "即日アドバイス提供"
+    ]
+  },
+  {
     name: "基本プラン",
     price: "150,000円〜",
     duration: "3ヶ月",
@@ -91,7 +102,7 @@ export default function ConsultingPage() {
 
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-8">コンサルティングプラン</h2>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-3">
           {consultingPlans.map((plan) => (
             <Card key={plan.name} className="flex flex-col">
               <CardHeader>
@@ -100,7 +111,7 @@ export default function ConsultingPage() {
                   {plan.price}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  契約期間: {plan.duration}
+                  {plan.duration}
                 </div>
               </CardHeader>
               <CardContent className="flex-1">
