@@ -14,7 +14,7 @@ import {
 const developmentPlans = [
   {
     name: "基本開発プラン",
-    price: "1,000,000円〜",
+    price: "200,000円〜",
     duration: "2-3ヶ月",
     features: [
       "要件定義・設計",
@@ -25,24 +25,13 @@ const developmentPlans = [
   },
   {
     name: "カスタム開発プラン",
-    price: "2,000,000円〜",
+    price: "500,000円〜",
     duration: "3-6ヶ月",
     features: [
       "詳細な要件分析",
       "カスタム機能開発",
       "既存システム連携",
       "運用サポート"
-    ]
-  },
-  {
-    name: "エンタープライズプラン",
-    price: "要相談",
-    duration: "6ヶ月〜",
-    features: [
-      "大規模システム開発",
-      "複雑なシステム統合",
-      "高度なAI機能実装",
-      "包括的な保守管理"
     ]
   }
 ];
