@@ -14,6 +14,12 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ChatBot from "@/components/chat/ChatBot";
 
+// サービス詳細ページのインポート
+import Seminar from "@/pages/services/seminar";
+import Support from "@/pages/services/support";
+import Development from "@/pages/services/development";
+import Consulting from "@/pages/services/consulting";
+
 function Router() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -22,6 +28,10 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/services" component={Services} />
+          <Route path="/services/seminar" component={Seminar} />
+          <Route path="/services/support" component={Support} />
+          <Route path="/services/development" component={Development} />
+          <Route path="/services/consulting" component={Consulting} />
           <Route path="/case-studies" component={CaseStudies} />
           <Route path="/contact" component={Contact} />
           <Route path="/blog" component={Blog} />
