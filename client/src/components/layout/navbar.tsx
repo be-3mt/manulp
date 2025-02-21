@@ -5,7 +5,6 @@ const navItems = [
   { href: "/", label: "ホーム" },
   { href: "/services", label: "サービス" },
   { href: "https://note.com/hiroki_morishima", label: "ブログ", external: true },
-  { href: "/dashboard", label: "ダッシュボード" },
   { href: "/contact", label: "お問い合わせ" }
 ];
 

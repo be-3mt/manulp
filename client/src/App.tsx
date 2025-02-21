@@ -6,7 +6,6 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Contact from "@/pages/contact";
-import Dashboard from "@/pages/dashboard";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ChatBot from "@/components/chat/ChatBot";
@@ -30,7 +29,6 @@ function Router() {
           <Route path="/services/development" component={Development} />
           <Route path="/services/consulting" component={Consulting} />
           <Route path="/contact" component={Contact} />
-          <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} />
         </Switch>
       </main>
