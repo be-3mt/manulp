@@ -30,19 +30,7 @@ const supportPlans = [
     features: [
       "詳細な業務分析",
       "カスタマイズ導入支援",
-      "スタッフトレーニング",
-      "24時間サポート体制"
-    ]
-  },
-  {
-    name: "エンタープライズプラン",
-    price: "要相談",
-    duration: "12ヶ月",
-    features: [
-      "包括的な導入支援",
-      "システム統合支援",
-      "専任サポート担当",
-      "定期的な効果測定"
+      "スタッフトレーニング"
     ]
   }
 ];
@@ -102,7 +90,7 @@ export default function SupportPage() {
 
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-8">サポートプラン</h2>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           {supportPlans.map((plan) => (
             <Card key={plan.name} className="flex flex-col">
               <CardHeader>
