@@ -161,7 +161,6 @@ export default function ConsultingPage() {
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-4">お気軽にご相談ください</h2>
         <p className="text-muted-foreground mb-8">
-          まずは無料で初期診断・お見積りをさせていただきます。<br />
           お客様に最適な支援プランをご提案いたします。
         </p>
         <Link href="/contact">
