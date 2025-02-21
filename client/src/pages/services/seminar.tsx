@@ -46,7 +46,7 @@ const courseDetails = [
   },
   {
     name: "継続フォロー",
-    duration: "3ヶ月",
+    duration: "1ヶ月～",
     price: "100,000円〜",
     features: [
       "定期的な進捗確認",
