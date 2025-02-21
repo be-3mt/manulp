@@ -16,7 +16,7 @@ const courseDetails = [
   {
     name: "入門コース",
     duration: "1日間",
-    price: "100,000円",
+    price: "100,000円～",
     features: [
       "生成AIの基礎知識",
       "主要ツールの概要",
@@ -26,7 +26,7 @@ const courseDetails = [
   {
     name: "現場実践コース",
     duration: "1日間",
-    price: "300,000円",
+    price: "300,000円～",
     features: [
       "業務内容のヒアリング",
       "業務プロセス分析",
@@ -37,7 +37,7 @@ const courseDetails = [
   {
     name: "経営者向けコース（生成AI導入推進）",
     duration: "1日間",
-    price: "200,000円",
+    price: "200,000円～",
     features: [
       "経営戦略との統合",
       "現状の課題のヒアリング",
@@ -47,7 +47,7 @@ const courseDetails = [
   {
     name: "継続フォロー",
     duration: "1ヶ月～",
-    price: "100,000円〜",
+    price: "100,000円～",
     features: [
       "定期的な進捗確認",
       "課題解決サポート",
