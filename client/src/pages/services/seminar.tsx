@@ -20,30 +20,39 @@ const courseDetails = [
     features: [
       "生成AIの基礎知識",
       "主要ツールの概要",
-      "導入事例の紹介",
       "ハンズオン体験"
     ]
   },
   {
-    name: "実践コース",
-    duration: "2日間",
+    name: "現場実践コース",
+    duration: "1日間",
     price: "300,000円",
     features: [
-      "詳細な技術解説",
+      "業務内容のヒアリング",
       "業務プロセス分析",
-      "カスタマイズ方法",
+      "業務への活用・カスタマイズ",
       "実践的なワークショップ"
     ]
   },
   {
-    name: "経営者向けコース",
+    name: "経営者向けコース（生成AI導入推進）",
     duration: "1日間",
     price: "200,000円",
     features: [
       "経営戦略との統合",
-      "ROI分析",
-      "リスク管理",
+      "現状の課題のヒアリング",
       "導入計画の策定"
+    ]
+  },
+  {
+    name: "継続フォロー",
+    duration: "3ヶ月",
+    price: "100,000円〜",
+    features: [
+      "定期的な進捗確認",
+      "課題解決サポート",
+      "活用方法の提案",
+      "運用サポート"
     ]
   }
 ];
@@ -84,7 +93,7 @@ export default function SeminarPage() {
         実践的な知識とスキルを身につける、少人数制の集中セミナー
       </p>
 
-      <div className="grid gap-8 md:grid-cols-3 mb-16">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-16">
         {courseDetails.map((course) => (
           <Card key={course.name} className="flex flex-col">
             <CardHeader>
@@ -95,9 +104,6 @@ export default function SeminarPage() {
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-muted-foreground" />
                   <span>{course.duration}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {/* Removed participants */}
                 </div>
                 <div className="text-xl font-bold text-primary mt-4">
                   {course.price}
