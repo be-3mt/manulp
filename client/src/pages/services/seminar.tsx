@@ -99,7 +99,7 @@ export default function SeminarPage() {
             <CardHeader>
               <CardTitle className="text-xl">{course.name}</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 flex flex-col">
+            <CardContent className="flex-1">
               <div className="mb-6 space-y-2">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-muted-foreground" />
@@ -109,7 +109,7 @@ export default function SeminarPage() {
                   {course.price}
                 </div>
               </div>
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2">
                 {course.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-primary" />
@@ -117,11 +117,6 @@ export default function SeminarPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto">
-                <Link href="/contact">
-                  <Button className="w-full">申し込む</Button>
-                </Link>
-              </div>
             </CardContent>
           </Card>
         ))}
