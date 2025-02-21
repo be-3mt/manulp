@@ -16,8 +16,7 @@ const courseDetails = [
   {
     name: "入門コース",
     duration: "1日間",
-    price: "50,000円",
-    participants: "最大10名",
+    price: "100,000円",
     features: [
       "生成AIの基礎知識",
       "主要ツールの概要",
@@ -28,8 +27,7 @@ const courseDetails = [
   {
     name: "実践コース",
     duration: "2日間",
-    price: "120,000円",
-    participants: "最大8名",
+    price: "300,000円",
     features: [
       "詳細な技術解説",
       "業務プロセス分析",
@@ -40,8 +38,7 @@ const courseDetails = [
   {
     name: "経営者向けコース",
     duration: "1日間",
-    price: "80,000円",
-    participants: "最大6名",
+    price: "200,000円",
     features: [
       "経営戦略との統合",
       "ROI分析",
@@ -100,8 +97,7 @@ export default function SeminarPage() {
                   <span>{course.duration}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-muted-foreground" />
-                  <span>{course.participants}</span>
+                  {/* Removed participants */}
                 </div>
                 <div className="text-xl font-bold text-primary mt-4">
                   {course.price}
