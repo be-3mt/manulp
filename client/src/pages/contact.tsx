@@ -34,8 +34,8 @@ export default function Contact() {
     },
     onSuccess: () => {
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: "送信完了",
+        description: "お問い合わせありがとうございます。できるだけ早くご返信いたします。",
       });
       form.reset();
     },
@@ -43,7 +43,7 @@ export default function Contact() {
 
   return (
     <div className="container max-w-2xl py-12">
-      <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
+      <h1 className="text-4xl font-bold mb-8">お問い合わせ</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
@@ -54,9 +54,9 @@ export default function Contact() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>お名前</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="山田 太郎" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -67,11 +67,11 @@ export default function Contact() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>メールアドレス</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
-                    placeholder="john@company.com"
+                    placeholder="taro@example.com"
                     {...field}
                   />
                 </FormControl>
@@ -84,9 +84,9 @@ export default function Contact() {
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company</FormLabel>
+                <FormLabel>会社名</FormLabel>
                 <FormControl>
-                  <Input placeholder="Acme Inc." {...field} />
+                  <Input placeholder="株式会社〇〇" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,10 +97,10 @@ export default function Contact() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>お問い合わせ内容</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Tell us about your needs..."
+                    placeholder="ご相談内容をご記入ください..."
                     className="min-h-[150px]"
                     {...field}
                   />
@@ -114,7 +114,7 @@ export default function Contact() {
             className="w-full"
             disabled={mutation.isPending}
           >
-            {mutation.isPending ? "Sending..." : "Send Message"}
+            {mutation.isPending ? "送信中..." : "送信する"}
           </Button>
         </form>
       </Form>
