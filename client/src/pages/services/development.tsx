@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowLeft, Code, Zap, Link as LinkIcon, Bot, CheckCircle, Cpu, Network } from "lucide-react";
+import { ArrowLeft, Code, Bot, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -30,7 +30,6 @@ const developmentPlans = [
     features: [
       "詳細な要件分析",
       "カスタム機能開発",
-      "既存システム連携",
       "運用サポート"
     ]
   }
@@ -59,24 +58,6 @@ const developmentProcess = [
   }
 ];
 
-const technologies = [
-  {
-    title: "生成AI技術",
-    description: "GPT-4, DALL-E, Stable Diffusion等の最新モデルを活用",
-    icon: Cpu
-  },
-  {
-    title: "クラウド基盤",
-    description: "AWS, Google Cloud等での安定したシステム運用",
-    icon: Network
-  },
-  {
-    title: "システム連携",
-    description: "既存システムとのスムーズな統合・連携を実現",
-    icon: LinkIcon
-  }
-];
-
 export default function DevelopmentPage() {
   return (
     <div className="container py-12">
@@ -90,26 +71,12 @@ export default function DevelopmentPage() {
         業務に特化した生成AIアプリケーションやツールの開発、既存システムとの連携を実現
       </p>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
+      <div className="grid gap-8 md:grid-cols-2 mb-12">
         <div className="flex items-start gap-4">
           <Code className="h-8 w-8 text-primary" />
           <div>
             <h3 className="font-semibold mb-2">カスタム開発</h3>
             <p className="text-muted-foreground">業務要件に合わせた専用アプリケーション開発</p>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <LinkIcon className="h-8 w-8 text-primary" />
-          <div>
-            <h3 className="font-semibold mb-2">システム連携</h3>
-            <p className="text-muted-foreground">既存システムとのスムーズな統合を実現</p>
-          </div>
-        </div>
-        <div className="flex items-start gap-4">
-          <Zap className="h-8 w-8 text-primary" />
-          <div>
-            <h3 className="font-semibold mb-2">高性能</h3>
-            <p className="text-muted-foreground">最新技術を活用した高性能なソリューション</p>
           </div>
         </div>
         <div className="flex items-start gap-4">
@@ -123,7 +90,7 @@ export default function DevelopmentPage() {
 
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-8">開発プラン</h2>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           {developmentPlans.map((plan) => (
             <Card key={plan.name} className="flex flex-col">
               <CardHeader>
@@ -170,21 +137,6 @@ export default function DevelopmentPage() {
             ))}
           </TableBody>
         </Table>
-      </div>
-
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8">活用技術</h2>
-        <div className="grid gap-8 md:grid-cols-3">
-          {technologies.map((tech) => (
-            <div key={tech.title} className="flex items-start gap-4">
-              <tech.icon className="h-8 w-8 text-primary" />
-              <div>
-                <h3 className="font-semibold mb-2">{tech.title}</h3>
-                <p className="text-muted-foreground">{tech.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="text-center">
