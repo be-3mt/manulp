@@ -3,15 +3,21 @@ import type { InsertContact } from '@shared/schema';
 
 // メール送信の設定
 const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.gmail.com',
+  host: 'smtp.gmail.com',
   port: 465,
-  secure: true, // SSL/TLS
+  secure: true,
   auth: {
     user: process.env.NODEMAILER_USER,
     pass: process.env.NODEMAILER_PASS
   },
-  debug: true, // デバッグモードを有効化
-  logger: true // ロギングを有効化
+  debug: true,
+  logger: true,
+  tls: {
+    // SSL/TLS証明書の検証を有効化
+    rejectUnauthorized: true,
+    // 最新のTLSプロトコルを使用
+    minVersion: 'TLSv1.2'
+  }
 });
 
 // 設定のテスト
@@ -28,7 +34,10 @@ export async function sendContactNotification(contact: InsertContact) {
   console.log('Attempting to send notification email to:', process.env.NODEMAILER_USER);
 
   const mailOptions = {
-    from: process.env.NODEMAILER_USER,
+    from: {
+      name: '知的探求HUB',
+      address: process.env.NODEMAILER_USER as string
+    },
     to: process.env.NODEMAILER_USER,
     subject: `新規お問い合わせ: ${contact.company}様より`,
     text: `
@@ -50,7 +59,12 @@ ${contact.message}
 
 <h3>お問い合わせ内容:</h3>
 <p>${contact.message.replace(/\n/g, '<br>')}</p>
-    `
+    `,
+    headers: {
+      'X-Priority': '1',
+      'X-MSMail-Priority': 'High',
+      'Importance': 'high'
+    }
   };
 
   try {
@@ -69,7 +83,10 @@ export async function sendAutoReply(contact: InsertContact) {
   console.log('Attempting to send auto-reply email to:', contact.email);
 
   const mailOptions = {
-    from: process.env.NODEMAILER_USER,
+    from: {
+      name: '知的探求HUB',
+      address: process.env.NODEMAILER_USER as string
+    },
     to: contact.email,
     subject: 'お問い合わせありがとうございます',
     text: `
@@ -120,7 +137,12 @@ ${contact.message}
 <p style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 20px;">
 知的探求HUB
 </p>
-    `
+    `,
+    headers: {
+      'X-Priority': '1',
+      'X-MSMail-Priority': 'High',
+      'Importance': 'high'
+    }
   };
 
   try {
