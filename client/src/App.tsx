@@ -6,8 +6,6 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import Contact from "@/pages/contact";
-import Blog from "@/pages/blog";
-import BlogPost from "@/pages/blog/[id]";
 import Dashboard from "@/pages/dashboard";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
@@ -32,8 +30,6 @@ function Router() {
           <Route path="/services/development" component={Development} />
           <Route path="/services/consulting" component={Consulting} />
           <Route path="/contact" component={Contact} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/blog/:slug" component={BlogPost} />
           <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} />
         </Switch>

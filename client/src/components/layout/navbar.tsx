@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/", label: "ホーム" },
   { href: "/services", label: "サービス" },
-  { href: "/blog", label: "ブログ" },
+  { href: "https://note.com/hiroki_morishima", label: "ブログ", external: true },
   { href: "/dashboard", label: "ダッシュボード" },
   { href: "/contact", label: "お問い合わせ" }
 ];
@@ -23,18 +23,30 @@ export default function Navbar() {
         </Link>
         <div className="flex gap-6">
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                location === item.href
-                  ? "text-foreground"
-                  : "text-foreground/60"
-              )}
-            >
-              {item.label}
-            </Link>
+            item.external ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-foreground/60 transition-colors hover:text-primary"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  location === item.href
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                )}
+              >
+                {item.label}
+              </Link>
+            )
           ))}
         </div>
       </div>
