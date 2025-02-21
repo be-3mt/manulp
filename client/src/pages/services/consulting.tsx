@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowLeft, LineChart, Target, BarChart, TrendingUp, CheckCircle } from "lucide-react";
+import { ArrowLeft, LineChart, Target, Presentation, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -83,7 +83,7 @@ export default function ConsultingPage() {
         経営戦略の立案から実行まで、専門家による包括的な支援を提供
       </p>
 
-      <div className="grid gap-8 md:grid-cols-2 mb-12">
+      <div className="grid gap-8 md:grid-cols-3 mb-12">
         <div className="flex items-start gap-4">
           <LineChart className="h-8 w-8 text-primary" />
           <div>
@@ -96,6 +96,13 @@ export default function ConsultingPage() {
           <div>
             <h3 className="font-semibold mb-2">戦略立案</h3>
             <p className="text-muted-foreground">データに基づく効果的な戦略の策定</p>
+          </div>
+        </div>
+        <div className="flex items-start gap-4">
+          <Presentation className="h-8 w-8 text-primary" />
+          <div>
+            <h3 className="font-semibold mb-2">進捗フォロー</h3>
+            <p className="text-muted-foreground">定期的な進捗確認と課題解決支援</p>
           </div>
         </div>
       </div>
