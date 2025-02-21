@@ -5,6 +5,7 @@ import { insertContactSchema, insertChatMessageSchema, insertChatUserSchema, ins
 import { fromZodError } from "zod-validation-error";
 import { generateAIResponse } from "./openai";
 import { ZodError } from "zod";
+import { sendContactNotification } from "./utils/mailer";
 
 export function registerRoutes(app: Express): Server {
   // 既存のルート
@@ -26,6 +27,15 @@ export function registerRoutes(app: Express): Server {
     try {
       const contact = insertContactSchema.parse(req.body);
       const result = await storage.createContact(contact);
+
+      // お問い合わせ内容をメールで通知
+      try {
+        await sendContactNotification(contact);
+      } catch (emailError) {
+        console.error('Failed to send notification email:', emailError);
+        // メール送信に失敗してもお問い合わせ自体は成功とする
+      }
+
       res.json(result);
     } catch (error) {
       if (error instanceof ZodError) {
