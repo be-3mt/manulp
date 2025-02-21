@@ -3,15 +3,30 @@ import type { InsertContact } from '@shared/schema';
 
 // メール送信の設定
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp-relay.gmail.com',
+  port: 465,
+  secure: true, // SSL/TLS
   auth: {
     user: process.env.NODEMAILER_USER,
     pass: process.env.NODEMAILER_PASS
+  },
+  debug: true, // デバッグモードを有効化
+  logger: true // ロギングを有効化
+});
+
+// 設定のテスト
+transporter.verify(function(error, success) {
+  if (error) {
+    console.error('SMTP connection error:', error);
+  } else {
+    console.log('SMTP server is ready to take our messages');
   }
 });
 
 // お問い合わせ通知メール送信
 export async function sendContactNotification(contact: InsertContact) {
+  console.log('Attempting to send notification email to:', process.env.NODEMAILER_USER);
+
   const mailOptions = {
     from: process.env.NODEMAILER_USER,
     to: process.env.NODEMAILER_USER,
@@ -39,18 +54,20 @@ ${contact.message}
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('Contact notification email sent successfully');
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Contact notification email sent successfully:', info.messageId);
     // 自動返信メールを送信
     await sendAutoReply(contact);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error sending contact notification email:', error);
-    throw error;
+    throw new Error('Failed to send notification email: ' + (error as Error).message);
   }
 }
 
 // 自動返信メール送信
 export async function sendAutoReply(contact: InsertContact) {
+  console.log('Attempting to send auto-reply email to:', contact.email);
+
   const mailOptions = {
     from: process.env.NODEMAILER_USER,
     to: contact.email,
@@ -107,10 +124,10 @@ ${contact.message}
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log('Auto-reply email sent successfully');
-  } catch (error) {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Auto-reply email sent successfully:', info.messageId);
+  } catch (error: unknown) {
     console.error('Error sending auto-reply email:', error);
-    throw error;
+    throw new Error('Failed to send auto-reply email: ' + (error as Error).message);
   }
 }
