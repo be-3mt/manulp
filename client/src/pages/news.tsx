@@ -5,27 +5,27 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const newsItems = [
   {
     id: "4",
-    date: "2025.2.17",
-    title: "メディア掲載のお知らせ",
-    link: "/news/media-coverage"
+    date: "2025.03.01",
+    title: "ブログを更新しました",
+    link: "/news/blog-update-4"
   },
   {
     id: "3",
-    date: "2024.12.9",
-    title: "AGENTS DOING ALLサービス「Project m」提供開始のお知らせ",
-    link: "/news/project-m-launch"
+    date: "2025.02.15",
+    title: "ブログを更新しました",
+    link: "/news/blog-update-3"
   },
   {
     id: "2",
-    date: "2024.12.2",
-    title: "1000以上の商品情報を正確にリアルタイム回答「MARIA AI」サービス開始",
-    link: "/news/maria-ai-launch"
+    date: "2025.01.10",
+    title: "ブログを更新しました",
+    link: "/news/blog-update-2"
   },
   {
     id: "1",
-    date: "2024.11.25",
-    title: "ポンギンカンの事業戦略について",
-    link: "/news/business-strategy"
+    date: "2024.12.07",
+    title: "ブログを更新しました",
+    link: "/news/blog-update-1"
   }
 ];
 
