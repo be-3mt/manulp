@@ -60,15 +60,15 @@ export default function Features() {
   return (
     <section>
       {/* お知らせセクション */}
-      <div className="container py-20">
-        <div className="mb-20">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="py-20">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold">お知らせ</h2>
             <Link href="/news" className="text-primary hover:underline">
               すべて見る
             </Link>
           </div>
-          <div className="grid gap-4">
+          <div className="grid gap-4 max-w-3xl mx-auto">
             {latestNews.map((news) => (
               <a key={news.date} href={news.link} target="_blank" rel="noopener noreferrer">
                 <Card className="cursor-pointer transition-colors hover:bg-accent">
@@ -96,25 +96,27 @@ export default function Features() {
             opacity: '0.15'
           }}
         />
-        <div className="container py-20 relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            人とAIの協力で、<br />
-            製造業のDXを加速
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
-            {features.map((feature) => (
-              <Link key={feature.title} href={feature.path}>
-                <Card className="cursor-pointer transition-colors hover:bg-accent bg-background/80 backdrop-blur-sm">
-                  <CardHeader>
-                    <feature.icon className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="py-20">
+            <h2 className="text-3xl font-bold text-center mb-12">
+              人とAIの協力で、<br />
+              製造業のDXを加速
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature) => (
+                <Link key={feature.title} href={feature.path}>
+                  <Card className="cursor-pointer transition-colors hover:bg-accent bg-background/80 backdrop-blur-sm h-full">
+                    <CardHeader>
+                      <feature.icon className="h-10 w-10 text-primary mb-4" />
+                      <CardTitle>{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
