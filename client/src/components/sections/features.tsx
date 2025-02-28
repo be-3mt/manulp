@@ -38,7 +38,6 @@ const features = [
   },
 ];
 
-// 最新のお知らせ
 const latestNews = [
   {
     date: "2025.03.01",
@@ -59,36 +58,37 @@ const latestNews = [
 
 export default function Features() {
   return (
-    <section className="container py-20">
+    <section>
       {/* お知らせセクション */}
-      <div className="mb-20">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">お知らせ</h2>
-          <Link href="/news" className="text-primary hover:underline">
-            すべて見る
-          </Link>
-        </div>
-        <div className="grid gap-4">
-          {latestNews.map((news) => (
-            <a key={news.date} href={news.link} target="_blank" rel="noopener noreferrer">
-              <Card className="cursor-pointer transition-colors hover:bg-accent">
-                <CardHeader>
-                  <div className="text-sm text-muted-foreground mb-2">
-                    {news.date}
-                  </div>
-                  <CardTitle className="text-lg">{news.title}</CardTitle>
-                </CardHeader>
-              </Card>
-            </a>
-          ))}
+      <div className="container py-20">
+        <div className="mb-20">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold">お知らせ</h2>
+            <Link href="/news" className="text-primary hover:underline">
+              すべて見る
+            </Link>
+          </div>
+          <div className="grid gap-4">
+            {latestNews.map((news) => (
+              <a key={news.date} href={news.link} target="_blank" rel="noopener noreferrer">
+                <Card className="cursor-pointer transition-colors hover:bg-accent">
+                  <CardHeader>
+                    <div className="text-sm text-muted-foreground mb-2">
+                      {news.date}
+                    </div>
+                    <CardTitle className="text-lg">{news.title}</CardTitle>
+                  </CardHeader>
+                </Card>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* 主要サービスセクション */}
-      <div className="relative py-20 rounded-lg overflow-hidden">
-        {/* 背景画像 */}
+      <div className="w-full bg-background relative overflow-hidden">
         <div 
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0"
           style={{
             backgroundImage: 'url(/images/human-robot.jpg)',
             backgroundSize: 'cover',
@@ -96,25 +96,26 @@ export default function Features() {
             opacity: '0.15'
           }}
         />
-
-        <h2 className="text-3xl font-bold text-center mb-4">
-          人とAIの協力で、<br />
-          製造業のDXを加速
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
-          {features.map((feature) => (
-            <Link key={feature.title} href={feature.path}>
-              <Card className="cursor-pointer transition-colors hover:bg-accent bg-background/80 backdrop-blur-sm">
-                <CardHeader>
-                  <feature.icon className="h-10 w-10 text-primary mb-4" />
-                  <CardTitle>{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+        <div className="container py-20 relative z-10">
+          <h2 className="text-3xl font-bold text-center mb-4">
+            人とAIの協力で、<br />
+            製造業のDXを加速
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
+            {features.map((feature) => (
+              <Link key={feature.title} href={feature.path}>
+                <Card className="cursor-pointer transition-colors hover:bg-accent bg-background/80 backdrop-blur-sm">
+                  <CardHeader>
+                    <feature.icon className="h-10 w-10 text-primary mb-4" />
+                    <CardTitle>{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
