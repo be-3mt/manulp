@@ -9,6 +9,7 @@ import Contact from "@/pages/contact";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import ChatBot from "@/components/chat/ChatBot";
+import News from "@/pages/news";
 
 // サービス詳細ページのインポート
 import Seminar from "@/pages/services/seminar";
@@ -23,6 +24,7 @@ function Router() {
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/news" component={News} />
           <Route path="/services" component={Services} />
           <Route path="/services/seminar" component={Seminar} />
           <Route path="/services/support" component={Support} />

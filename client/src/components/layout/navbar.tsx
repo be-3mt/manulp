@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "ホーム" },
+  { href: "/news", label: "お知らせ" },
   { href: "/services", label: "サービス" },
   { href: "https://note.com/hiroki_morishima", label: "ブログ", external: true },
   { href: "/contact", label: "お問い合わせ" }

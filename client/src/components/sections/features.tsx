@@ -38,6 +38,25 @@ const features = [
   },
 ];
 
+// 最新のお知らせ
+const latestNews = [
+  {
+    date: "2025.2.17",
+    title: "メディア掲載のお知らせ",
+    link: "/news/media-coverage"
+  },
+  {
+    date: "2024.12.9",
+    title: "AGENTS DOING ALLサービス「Project m」提供開始のお知らせ",
+    link: "/news/project-m-launch"
+  },
+  {
+    date: "2024.12.2",
+    title: "1000以上の商品情報を正確にリアルタイム回答「MARIA AI」サービス開始",
+    link: "/news/maria-ai-launch"
+  }
+];
+
 export default function Features() {
   return (
     <section className="container py-20">
@@ -58,6 +77,30 @@ export default function Features() {
             </Card>
           </Link>
         ))}
+      </div>
+
+      {/* お知らせセクション */}
+      <div className="mt-20">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">お知らせ</h2>
+          <Link href="/news" className="text-primary hover:underline">
+            すべて見る
+          </Link>
+        </div>
+        <div className="grid gap-4">
+          {latestNews.map((news) => (
+            <Link key={news.date} href={news.link}>
+              <Card className="cursor-pointer transition-colors hover:bg-accent">
+                <CardHeader>
+                  <div className="text-sm text-muted-foreground mb-2">
+                    {news.date}
+                  </div>
+                  <CardTitle className="text-lg">{news.title}</CardTitle>
+                </CardHeader>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
