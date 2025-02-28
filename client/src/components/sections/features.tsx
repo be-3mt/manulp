@@ -84,23 +84,38 @@ export default function Features() {
         </div>
       </div>
 
-      <h2 className="text-3xl font-bold text-center mb-12">
-        主要サービス
-      </h2>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {features.map((feature) => (
-          <Link key={feature.title} href={feature.path}>
-            <Card className="cursor-pointer transition-colors hover:bg-accent">
-              <CardHeader>
-                <feature.icon className="h-10 w-10 text-primary mb-4" />
-                <CardTitle>{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+      {/* 主要サービスセクション */}
+      <div className="relative py-20 rounded-lg overflow-hidden">
+        {/* 背景画像 */}
+        <div 
+          className="absolute inset-0 -z-10"
+          style={{
+            backgroundImage: 'url(/images/human-robot.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: '0.15'
+          }}
+        />
+
+        <h2 className="text-3xl font-bold text-center mb-4">
+          人とAIの協力で、<br />
+          製造業のDXを加速
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
+          {features.map((feature) => (
+            <Link key={feature.title} href={feature.path}>
+              <Card className="cursor-pointer transition-colors hover:bg-accent bg-background/80 backdrop-blur-sm">
+                <CardHeader>
+                  <feature.icon className="h-10 w-10 text-primary mb-4" />
+                  <CardTitle>{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
