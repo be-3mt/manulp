@@ -30,21 +30,23 @@ const newsItems = [
 
 export default function NewsPage() {
   return (
-    <div className="container py-12">
-      <h1 className="text-4xl font-bold mb-8">お知らせ</h1>
-      <div className="grid gap-4">
-        {newsItems.map((news) => (
-          <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer">
-            <Card className="cursor-pointer transition-colors hover:bg-accent">
-              <CardHeader>
-                <div className="text-sm text-muted-foreground mb-2">
-                  {news.date}
-                </div>
-                <CardTitle className="text-xl">{news.title}</CardTitle>
-              </CardHeader>
-            </Card>
-          </a>
-        ))}
+    <div className="container mx-auto px-4 max-w-7xl py-12">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">お知らせ</h1>
+        <div className="grid gap-4">
+          {newsItems.map((news) => (
+            <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer">
+              <Card className="cursor-pointer transition-colors hover:bg-accent">
+                <CardHeader>
+                  <div className="text-sm text-muted-foreground mb-2">
+                    {news.date}
+                  </div>
+                  <CardTitle className="text-xl">{news.title}</CardTitle>
+                </CardHeader>
+              </Card>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

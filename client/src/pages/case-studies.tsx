@@ -42,7 +42,7 @@ const caseStudies = [
 
 export default function CaseStudies() {
   return (
-    <div className="container py-12">
+    <div className="container mx-auto px-4 max-w-7xl py-12">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Case Studies</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

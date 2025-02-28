@@ -72,7 +72,7 @@ const consultingProcess = [
 
 export default function ConsultingPage() {
   return (
-    <div className="container py-12">
+    <div className="container mx-auto px-4 max-w-7xl py-12">
       <Link href="/services" className="inline-flex items-center text-muted-foreground hover:text-primary mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" />
         サービス一覧に戻る
