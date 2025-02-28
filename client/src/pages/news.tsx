@@ -1,5 +1,4 @@
-import { Link } from "wouter";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 // お知らせデータ
 const newsItems = [
@@ -7,25 +6,25 @@ const newsItems = [
     id: "4",
     date: "2025.03.01",
     title: "ブログを更新しました",
-    link: "/news/blog-update-4"
+    link: "https://note.com/hiroki_morishima"
   },
   {
     id: "3",
     date: "2025.02.15",
     title: "ブログを更新しました",
-    link: "/news/blog-update-3"
+    link: "https://note.com/hiroki_morishima"
   },
   {
     id: "2",
     date: "2025.01.10",
     title: "ブログを更新しました",
-    link: "/news/blog-update-2"
+    link: "https://note.com/hiroki_morishima"
   },
   {
     id: "1",
     date: "2024.12.07",
     title: "ブログを更新しました",
-    link: "/news/blog-update-1"
+    link: "https://note.com/hiroki_morishima"
   }
 ];
 
@@ -35,7 +34,7 @@ export default function NewsPage() {
       <h1 className="text-4xl font-bold mb-8">お知らせ</h1>
       <div className="grid gap-4">
         {newsItems.map((news) => (
-          <Link key={news.id} href={news.link}>
+          <a key={news.id} href={news.link} target="_blank" rel="noopener noreferrer">
             <Card className="cursor-pointer transition-colors hover:bg-accent">
               <CardHeader>
                 <div className="text-sm text-muted-foreground mb-2">
@@ -44,7 +43,7 @@ export default function NewsPage() {
                 <CardTitle className="text-xl">{news.title}</CardTitle>
               </CardHeader>
             </Card>
-          </Link>
+          </a>
         ))}
       </div>
     </div>

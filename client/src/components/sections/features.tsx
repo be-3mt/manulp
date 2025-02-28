@@ -43,17 +43,17 @@ const latestNews = [
   {
     date: "2025.03.01",
     title: "ブログを更新しました",
-    link: "/news/blog-update-4"
+    link: "https://note.com/hiroki_morishima"
   },
   {
     date: "2025.02.15",
     title: "ブログを更新しました",
-    link: "/news/blog-update-3"
+    link: "https://note.com/hiroki_morishima"
   },
   {
     date: "2025.01.10",
     title: "ブログを更新しました",
-    link: "/news/blog-update-2"
+    link: "https://note.com/hiroki_morishima"
   }
 ];
 
@@ -70,7 +70,7 @@ export default function Features() {
         </div>
         <div className="grid gap-4">
           {latestNews.map((news) => (
-            <Link key={news.date} href={news.link}>
+            <a key={news.date} href={news.link} target="_blank" rel="noopener noreferrer">
               <Card className="cursor-pointer transition-colors hover:bg-accent">
                 <CardHeader>
                   <div className="text-sm text-muted-foreground mb-2">
@@ -79,7 +79,7 @@ export default function Features() {
                   <CardTitle className="text-lg">{news.title}</CardTitle>
                 </CardHeader>
               </Card>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
