@@ -19,6 +19,11 @@ export default function Navbar() {
           href="/" 
           className="mr-8 flex items-center space-x-2"
         >
+          <img 
+            src="/images/logo.png" 
+            alt="知的探求HUB" 
+            className="h-6 w-6"
+          />
           <span className="text-xl font-bold">知的探求HUB</span>
         </Link>
         <div className="flex gap-6">
