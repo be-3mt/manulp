@@ -17,9 +17,6 @@ export default function Footer() {
               <Link href="/services" className="text-sm text-muted-foreground hover:text-primary">
                 サービス
               </Link>
-              <Link href="/case-studies" className="text-sm text-muted-foreground hover:text-primary">
-                導入事例
-              </Link>
               <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary">
                 ブログ
               </Link>
