@@ -42,82 +42,84 @@ export default function Contact() {
   });
 
   return (
-    <div className="container max-w-2xl py-12">
-      <h1 className="text-4xl font-bold mb-8">お問い合わせ</h1>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
-          className="space-y-6"
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>お名前</FormLabel>
-                <FormControl>
-                  <Input placeholder="山田 太郎" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>メールアドレス</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="taro@example.com"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="company"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>会社名</FormLabel>
-                <FormControl>
-                  <Input placeholder="株式会社〇〇" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>お問い合わせ内容</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="ご相談内容をご記入ください..."
-                    className="min-h-[150px]"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={mutation.isPending}
+    <div className="container mx-auto px-4 max-w-7xl py-12">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8">お問い合わせ</h1>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit((data) => mutation.mutate(data))}
+            className="space-y-6"
           >
-            {mutation.isPending ? "送信中..." : "送信する"}
-          </Button>
-        </form>
-      </Form>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>お名前</FormLabel>
+                  <FormControl>
+                    <Input placeholder="山田 太郎" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>メールアドレス</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="taro@example.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="company"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>会社名</FormLabel>
+                  <FormControl>
+                    <Input placeholder="株式会社〇〇" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>お問い合わせ内容</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="ご相談内容をご記入ください..."
+                      className="min-h-[150px]"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={mutation.isPending}
+            >
+              {mutation.isPending ? "送信中..." : "送信する"}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }
