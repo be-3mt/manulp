@@ -17,9 +17,14 @@ export default function Footer() {
               <Link href="/services" className="text-sm text-muted-foreground hover:text-primary">
                 サービス
               </Link>
-              <Link href="/blog" className="text-sm text-muted-foreground hover:text-primary">
+              <a 
+                href="https://note.com/hiroki_morishima" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
                 ブログ
-              </Link>
+              </a>
             </div>
           </div>
           <div>
