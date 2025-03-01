@@ -31,7 +31,6 @@ export default function Footer() {
             <h4 className="font-medium mb-4">お問い合わせ</h4>
             <address className="text-sm text-muted-foreground not-italic">
               <p>メール: contact@manufacturingai.com</p>
-              <p>電話: 03-1234-5678</p>
             </address>
           </div>
         </div>
